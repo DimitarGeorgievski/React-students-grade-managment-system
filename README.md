@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -48,4 +47,3 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 =======
 # React-students-grade-managment-system
 Application for managing student grades
->>>>>>> 2dea4c6b0e51adb60119f9f2af906eb2880e93de
