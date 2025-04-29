@@ -1,13 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.e6c13ad2.css",
-    "main.js": "/static/js/main.fb3ff238.js",
-    "index.html": "/index.html",
-    "main.e6c13ad2.css.map": "/static/css/main.e6c13ad2.css.map",
-    "main.fb3ff238.js.map": "/static/js/main.fb3ff238.js.map"
-  },
-  "entrypoints": [
-    "static/css/main.e6c13ad2.css",
-    "static/js/main.fb3ff238.js"
-  ]
+    "main.css": "/React-students-grade-managment-system/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/React-students-grade-managment-system/static/js/main.11a0f281.chunk.js",
+    "main.js.map": "/React-students-grade-managment-system/static/js/main.11a0f281.chunk.js.map",
+    "runtime~main.js": "/React-students-grade-managment-system/static/js/runtime~main.dcd1d185.js",
+    "runtime~main.js.map": "/React-students-grade-managment-system/static/js/runtime~main.dcd1d185.js.map",
+    "static/js/2.c7821bdd.chunk.js": "/React-students-grade-managment-system/static/js/2.c7821bdd.chunk.js",
+    "static/js/2.c7821bdd.chunk.js.map": "/React-students-grade-managment-system/static/js/2.c7821bdd.chunk.js.map",
+    "index.html": "/React-students-grade-managment-system/index.html",
+    "precache-manifest.b7ef32fadfd4d32b39a65f3a391aa625.js": "/React-students-grade-managment-system/precache-manifest.b7ef32fadfd4d32b39a65f3a391aa625.js",
+    "service-worker.js": "/React-students-grade-managment-system/service-worker.js",
+    "static/css/main.5ecd60fb.chunk.css.map": "/React-students-grade-managment-system/static/css/main.5ecd60fb.chunk.css.map"
+  }
 }
