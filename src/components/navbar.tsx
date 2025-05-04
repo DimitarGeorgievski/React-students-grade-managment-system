@@ -16,7 +16,7 @@ const Navbar: React.FC<NavbarProps> = ({
         onClick={onViewAllGrades}
         className="px-4 py-2 rounded-2xl bg-blue-900"
       >
-        Види ги сите одценки
+        Види ги сите оценки
       </button>
       <button
         onClick={onFilterByStudent}
@@ -28,7 +28,7 @@ const Navbar: React.FC<NavbarProps> = ({
         onClick={onAddGrade}
         className="px-4 py-2 rounded-2xl bg-blue-900"
       >
-        Додај Одценка
+        Додај Оценка
       </button>
     </div>
   );
