@@ -6,7 +6,7 @@ interface LoginFormProps {
 const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [role, setRole] = useState<string>("parent"); // default to parent
+  const [role, setRole] = useState<string>("parent");
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onLogin(username, password, role);
