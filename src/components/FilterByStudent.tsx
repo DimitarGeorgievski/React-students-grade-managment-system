@@ -4,15 +4,12 @@ import React, { useState } from "react";
 interface FilterByStudentProps {
   onFilter: (studentName: string) => void;
 }
-
 const FilterByStudent: React.FC<FilterByStudentProps> = ({ onFilter }) => {
   const [studentName, setStudentName] = useState<string>("");
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onFilter(studentName);
   };
-
   return (
     <form
       onSubmit={handleSubmit}
@@ -34,5 +31,4 @@ const FilterByStudent: React.FC<FilterByStudentProps> = ({ onFilter }) => {
     </form>
   );
 };
-
 export default FilterByStudent;

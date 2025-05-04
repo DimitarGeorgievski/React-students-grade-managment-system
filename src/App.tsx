@@ -10,33 +10,28 @@ interface Grade {
   grade: number;
   subject: string;
 }
-
 const App: React.FC = () => {
   const [grades, setGrades] = useState<Grade[]>([]);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [role, setRole] = useState<string>("");
   const [currentView, setCurrentView] = useState<string>("");
   const [studentName, setStudentName] = useState<string>("");
-
   useEffect(() => {
     const savedGrades = localStorage.getItem("grades");
     if (savedGrades) {
       setGrades(JSON.parse(savedGrades));
     }
   }, []);
-
   useEffect(() => {
     if (isLoggedIn && role === "parent") {
       setCurrentView("filterStudent");
     }
   }, [isLoggedIn, role]);
-
   const addGrade = (grade: Grade) => {
     const newGrades = [...grades, grade];
     setGrades(newGrades);
     localStorage.setItem("grades", JSON.stringify(newGrades));
   };
-
   const updateGrade = (updatedGrade: Grade) => {
     const updatedGrades = grades.map((grade) =>
       grade.studentName === updatedGrade.studentName &&
@@ -47,7 +42,6 @@ const App: React.FC = () => {
     setGrades(updatedGrades);
     localStorage.setItem("grades", JSON.stringify(updatedGrades));
   };
-
   const deleteGrade = (gradeToDelete: Grade) => {
     const updatedGrades = grades.filter(
       (g) =>
@@ -60,7 +54,6 @@ const App: React.FC = () => {
     setGrades(updatedGrades);
     localStorage.setItem("grades", JSON.stringify(updatedGrades));
   };
-
   const handleLogin = (username: string, password: string, role: string) => {
     if (role === "parent") {
       const studentExists = grades.some(

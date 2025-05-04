@@ -25,28 +25,23 @@ const GradeForm: React.FC<Props> = ({ onAddGrade, existingGrades }) => {
   const [studentName, setStudentName] = useState("");
   const [grade, setGrade] = useState<number>(1);
   const [subject, setSubject] = useState(subjects[0]);
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
     const exists = existingGrades.some(
       (g) =>
         g.studentName.toLowerCase() === studentName.toLowerCase() &&
         g.subject === subject &&
         g.grade === grade
     );
-
     if (exists) {
       alert("Оценката веќе постои за овој ученик и предмет.");
       return;
     }
-
     onAddGrade({ studentName, grade, subject });
     setStudentName("");
     setGrade(1);
     setSubject(subjects[0]);
   };
-
   return (
     <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4">
       <input

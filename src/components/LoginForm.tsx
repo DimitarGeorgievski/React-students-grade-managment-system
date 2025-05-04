@@ -1,20 +1,16 @@
-// src/components/LoginForm.tsx
 import React, { useState } from "react";
 
 interface LoginFormProps {
   onLogin: (username: string, password: string, role: string) => void;
 }
-
 const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [role, setRole] = useState<string>("parent"); // default to parent
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onLogin(username, password, role);
   };
-
   return (
     <form
       className="max-w-sm mx-auto p-4 border border-gray-300 rounded"
@@ -78,5 +74,4 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
     </form>
   );
 };
-
 export default LoginForm;

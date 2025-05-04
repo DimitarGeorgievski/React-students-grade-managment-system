@@ -9,19 +9,14 @@ interface AppContextType {
   setRole: React.Dispatch<React.SetStateAction<string>>;
   setStudentName: React.Dispatch<React.SetStateAction<string>>;
 }
-
 const AppContext = createContext<AppContextType | undefined>(undefined);
-
-// Провајдер за контекстот
 interface AppProviderProps {
   children: ReactNode;
 }
-
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [role, setRole] = useState<string>("");
   const [studentName, setStudentName] = useState<string>("");
-
   return (
     <AppContext.Provider
       value={{
@@ -37,8 +32,6 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     </AppContext.Provider>
   );
 };
-
-// Хук за користење на контекстот
 export const useAppContext = (): AppContextType => {
   const context = useContext(AppContext);
   if (!context) {

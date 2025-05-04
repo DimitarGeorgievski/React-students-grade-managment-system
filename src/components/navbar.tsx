@@ -5,7 +5,6 @@ interface NavbarProps {
   onFilterByStudent: () => void;
   onAddGrade: () => void;
 }
-
 const Navbar: React.FC<NavbarProps> = ({
   onViewAllGrades,
   onFilterByStudent,
@@ -34,5 +33,4 @@ const Navbar: React.FC<NavbarProps> = ({
     </div>
   );
 };
-
 export default Navbar;

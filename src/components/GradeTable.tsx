@@ -5,14 +5,12 @@ interface Grade {
   grade: number;
   subject: string;
 }
-
 interface GradeTableProps {
   grades: Grade[];
   onUpdateGrade: (grade: Grade) => void;
   onDeleteGrade: (grade: Grade) => void;
   isTeacher: boolean;
 }
-
 const GradeTable: React.FC<GradeTableProps> = ({
   grades,
   onUpdateGrade,
