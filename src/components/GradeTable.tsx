@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 interface Grade {
+  id: string;
   studentName: string;
   grade: number;
   subject: string;
@@ -19,7 +20,7 @@ const GradeTable: React.FC<GradeTableProps> = ({
   onDeleteGrade,
   isTeacher,
 }) => {
-  const [editingGrade, setEditingGrade] = useState<Grade | null>(null);
+  const [editingGradeId, setEditingGradeId] = useState<string | null>(null);
   const [newGradeValue, setNewGradeValue] = useState<number>(0);
 
   const groupedGrades = grades.reduce(
@@ -43,6 +44,14 @@ const GradeTable: React.FC<GradeTableProps> = ({
     };
   });
 
+  const handleGradeChange = (value: number) => {
+    if (value < 1 || value > 5) {
+      alert("Мора да внесиш одценка од 1 до 5.");
+    } else {
+      setNewGradeValue(value);
+    }
+  };
+
   return (
     <div className="overflow-x-auto shadow-md sm:rounded-lg">
       <table className="min-w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -57,22 +66,20 @@ const GradeTable: React.FC<GradeTableProps> = ({
         <tbody>
           {sortedGroupedGrades.map((group, index) => (
             <React.Fragment key={index}>
-              {group.grades.map((grade, idx) => (
+              {group.grades.map((grade) => (
                 <tr
-                  key={idx}
+                  key={grade.id}
                   className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
                 >
                   <td className="px-6 py-4">{grade.studentName}</td>
                   <td className="px-6 py-4">{grade.subject}</td>
                   <td className="px-6 py-4">
-                    {editingGrade &&
-                    editingGrade.studentName === grade.studentName &&
-                    editingGrade.subject === grade.subject ? (
+                    {editingGradeId === grade.id ? (
                       <input
                         type="number"
                         value={newGradeValue}
                         onChange={(e) =>
-                          setNewGradeValue(parseInt(e.target.value))
+                          handleGradeChange(parseInt(e.target.value))
                         }
                         className="border px-2 py-1 w-20"
                       />
@@ -82,9 +89,7 @@ const GradeTable: React.FC<GradeTableProps> = ({
                   </td>
                   {isTeacher && (
                     <td className="px-6 py-4 space-x-4">
-                      {editingGrade &&
-                      editingGrade.studentName === grade.studentName &&
-                      editingGrade.subject === grade.subject ? (
+                      {editingGradeId === grade.id ? (
                         <>
                           <button
                             onClick={() => {
@@ -92,14 +97,14 @@ const GradeTable: React.FC<GradeTableProps> = ({
                                 ...grade,
                                 grade: newGradeValue,
                               });
-                              setEditingGrade(null);
+                              setEditingGradeId(null);
                             }}
                             className="text-green-600 hover:text-green-900"
                           >
                             Save
                           </button>
                           <button
-                            onClick={() => setEditingGrade(null)}
+                            onClick={() => setEditingGradeId(null)}
                             className="text-gray-600 hover:text-gray-900"
                           >
                             Cancel
@@ -109,7 +114,7 @@ const GradeTable: React.FC<GradeTableProps> = ({
                         <>
                           <button
                             onClick={() => {
-                              setEditingGrade(grade);
+                              setEditingGradeId(grade.id);
                               setNewGradeValue(grade.grade);
                             }}
                             className="text-blue-600 hover:text-blue-900"

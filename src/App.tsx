@@ -4,56 +4,56 @@ import GradeForm from "./components/GradeForm";
 import GradeTable from "./components/GradeTable";
 import Navbar from "./components/navbar";
 import FilterByStudent from "./components/FilterByStudent";
+import { v4 as uuidv4 } from 'uuid';
 
 interface Grade {
+  id: string;
   studentName: string;
   grade: number;
   subject: string;
 }
+
 const App: React.FC = () => {
   const [grades, setGrades] = useState<Grade[]>([]);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [role, setRole] = useState<string>("");
   const [currentView, setCurrentView] = useState<string>("");
   const [studentName, setStudentName] = useState<string>("");
+
   useEffect(() => {
     const savedGrades = localStorage.getItem("grades");
     if (savedGrades) {
       setGrades(JSON.parse(savedGrades));
     }
   }, []);
+
   useEffect(() => {
     if (isLoggedIn && role === "parent") {
       setCurrentView("filterStudent");
     }
   }, [isLoggedIn, role]);
-  const addGrade = (grade: Grade) => {
-    const newGrades = [...grades, grade];
+
+  const addGrade = (grade: Omit<Grade, "id">) => {
+    const newGrade = { ...grade, id: uuidv4() };
+    const newGrades = [...grades, newGrade];
     setGrades(newGrades);
     localStorage.setItem("grades", JSON.stringify(newGrades));
   };
+
   const updateGrade = (updatedGrade: Grade) => {
     const updatedGrades = grades.map((grade) =>
-      grade.studentName === updatedGrade.studentName &&
-      grade.subject === updatedGrade.subject
-        ? updatedGrade
-        : grade
+      grade.id === updatedGrade.id ? updatedGrade : grade
     );
     setGrades(updatedGrades);
     localStorage.setItem("grades", JSON.stringify(updatedGrades));
   };
+
   const deleteGrade = (gradeToDelete: Grade) => {
-    const updatedGrades = grades.filter(
-      (g) =>
-        !(
-          g.studentName === gradeToDelete.studentName &&
-          g.subject === gradeToDelete.subject &&
-          g.grade === gradeToDelete.grade
-        )
-    );
+    const updatedGrades = grades.filter((g) => g.id !== gradeToDelete.id);
     setGrades(updatedGrades);
     localStorage.setItem("grades", JSON.stringify(updatedGrades));
   };
+
   const handleLogin = (username: string, password: string, role: string) => {
     if (role === "parent") {
       const studentExists = grades.some(
@@ -114,6 +114,7 @@ const App: React.FC = () => {
               Одјави се
             </button>
           </div>
+
           {role === "teacher" && (
             <>
               <Navbar
@@ -126,6 +127,7 @@ const App: React.FC = () => {
               )}
             </>
           )}
+
           {currentView === "viewAll" && (
             <GradeTable
               grades={grades}
@@ -134,6 +136,7 @@ const App: React.FC = () => {
               isTeacher={role === "teacher"}
             />
           )}
+
           {currentView === "filterStudent" && (
             <GradeTable
               grades={grades.filter(
@@ -145,6 +148,7 @@ const App: React.FC = () => {
               isTeacher={role === "teacher"}
             />
           )}
+
           {currentView === "addGrade" && (
             <GradeForm onAddGrade={addGrade} existingGrades={grades} />
           )}
