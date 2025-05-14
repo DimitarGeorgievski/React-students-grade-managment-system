@@ -1,6 +1,5 @@
 import React, { createContext, useState, useContext, ReactNode } from "react";
 
-// Интерфејс за податоците што сакаме да ги чуваме во контекстот
 interface AppContextType {
   isLoggedIn: boolean;
   role: string;
